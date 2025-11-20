@@ -46,6 +46,7 @@ function reducer(state: State, action: Action): State {
 const CartContext = createContext<{
     items: CartItem[];
     subtotal: number;
+    dispatchGet: () => Promise<void>;
     dispatchAdd: (item: CartItem) => Promise<void>;
     dispatchUpdate: (productId: number, quantity: number) => Promise<void>;
     dispatchRemove: (productId: number) => Promise<void>;
@@ -63,6 +64,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const setLoading = (productId: number, val: boolean) =>
         setLoadingMap((m) => ({ ...m, [productId]: val }));
+
+    async function dispatchGet() {
+// optimistic update locally
+        dispatch({ type: 'SET_ITEMS', items: [] });
+        try {
+            setLoading(9999, true);
+            await api.apiGetCart();
+        } catch (e) {
+            console.error('Get cart API error', e);
+// rollback naive: remove item or decrement — here we remove to keep simple
+            //dispatch({ type: 'REMOVE', productId: item.productId });
+            throw e;
+        } finally {
+            setLoading(9999, false);
+        }
+    }
 
 
     async function dispatchAdd(item: CartItem) {
@@ -114,7 +131,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     return (
         <CartContext.Provider
-            value={{ items: state.items, subtotal, dispatchAdd, dispatchUpdate, dispatchRemove, loadingMap }}
+            value={{ items: state.items, subtotal, dispatchGet, dispatchAdd, dispatchUpdate, dispatchRemove, loadingMap }}
         >
             {children}
         </CartContext.Provider>

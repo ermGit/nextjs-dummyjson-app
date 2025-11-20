@@ -31,22 +31,30 @@ export interface CartItem {
 
 
 // API contract for PHP cart operations (simple)
-export type CartOperation = 'add' | 'update' | 'remove';
+export type CartOperation = 'get' | 'add' | 'update' | 'remove';
 
 
 export interface CartApiRequest {
     operation: CartOperation;
+    method: string;
+    endpoint: string;
     item: {
-        productId: number;
-        quantity: number;
+        productId?: number;
+        quantity?: number;
     };
 }
-
 
 export interface CartApiResponse {
     success: boolean;
     message?: string;
     cart?: {
-        items: Array<{ productId: number; quantity: number }>;
+        items: Array<{
+            productId: number;
+            quantity: number;
+            price: number;
+        }>;
+        subtotal: number;
+        tax: number;
+        total: number;
     };
 }

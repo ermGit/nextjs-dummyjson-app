@@ -5,6 +5,9 @@ import { CartItem } from '../types';
 export function useCart() {
     const ctx = useCartContext();
 
+    const getCart = async () => {
+        return ctx.dispatchGet();
+    };
 
     const addToCart = async (item: CartItem) => {
         return ctx.dispatchAdd(item);

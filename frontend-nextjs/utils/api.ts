@@ -31,19 +31,42 @@ async function callPhpCartApi(body: CartApiRequest): Promise<CartApiResponse> {
     return res.json();
 }
 
+export async function apiGetCart() {
+    return callPhpCartApi({
+        operation: 'get',
+        method: 'GET',
+        endpoint: '/api/cart',
+        item: {}
+    });
+}
 
 export async function apiAddToCart(productId: number, quantity = 1) {
-    return callPhpCartApi({ operation: 'add', item: { productId, quantity } });
+    return callPhpCartApi({
+        operation: 'add',
+        method: 'POST',
+        endpoint: '/api/cart/add',
+        item: { productId, quantity }
+    });
 }
 
 
 export async function apiUpdateCart(productId: number, quantity: number) {
-    return callPhpCartApi({ operation: 'update', item: { productId, quantity } });
+    return callPhpCartApi({
+        operation: 'update',
+        method: 'PUT',
+        endpoint: '/api/cart/update',
+        item: { productId, quantity }
+    });
 }
 
 
 export async function apiRemoveFromCart(productId: number) {
-    return callPhpCartApi({ operation: 'remove', item: { productId, quantity: 0 } });
+    return callPhpCartApi({
+        operation: 'remove',
+        method: 'DELETE',
+        endpoint: '/api/cart/remove',
+        item: { productId, quantity: 0 }
+    });
 }
 
 
