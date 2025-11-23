@@ -15,10 +15,11 @@ async function callPhpCartApi(body: CartApiRequest): Promise<CartApiResponse> {
     }
 
 
-    const res = await fetch(`${PHP_API_BASE}/cart.php`, {
-        method: 'POST',
+//    const res = await fetch(`${PHP_API_BASE}/cart.php`, {
+    const res = await fetch(`${PHP_API_BASE}${body.endpoint}`, {
+        method: body.method, //'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body.item)
     });
 
 
