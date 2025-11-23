@@ -1,3 +1,28 @@
+# Backend Setup
+
+
+1. Clone Git Repo into `backend-php` folder
+2. cd into `backend-php`
+3. `composer install`
+4. In `backend-php` folder, change `env` file to `.env`
+5. Setup `.env` file
+6. Add the following:
+```
+#--------------------------------------------------------------------
+# API URL
+#--------------------------------------------------------------------
+ALLOWED_ORIGINS=http://localhost:3000
+```
+7. php spark serve --port 3002
+
+Open http://localhost:3002
+http://localhost:3002/api/cart
+http://localhost:3002/api/add
+http://localhost:3002/api/update/{id}
+http://localhost:3002/api/remove/{id}
+
+# More Information on CodeIgniter Setup
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
