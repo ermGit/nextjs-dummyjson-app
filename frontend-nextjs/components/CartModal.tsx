@@ -33,13 +33,13 @@ export const CartModal: React.FC<{ open: boolean; onClose: () => void }> = ({ op
 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                     <button
-                                        onClick={() => updateQuantity(it.productId, Math.max(1, it.quantity - 1))}
+                                        onClick={() => updateQuantity(999, it.productId, Math.max(1, it.quantity - 1))}
                                         disabled={loadingMap[it.productId]}
                                     >
                                         -
                                     </button>
                                     <div>{it.quantity}</div>
-                                    <button onClick={() => updateQuantity(it.productId, it.quantity + 1)} disabled={loadingMap[it.productId]}>
+                                    <button onClick={() => updateQuantity(999, it.productId, it.quantity + 1)} disabled={loadingMap[it.productId]}>
                                         +
                                     </button>
                                 </div>
@@ -49,7 +49,7 @@ export const CartModal: React.FC<{ open: boolean; onClose: () => void }> = ({ op
 
 
                                 <div>
-                                    <button onClick={() => removeFromCart(it.productId)} disabled={loadingMap[it.productId]}>
+                                    <button onClick={() => removeFromCart(999, it.productId)} disabled={loadingMap[it.productId]}>
                                         {loadingMap[it.productId] ? 'Working...' : 'Remove'}
                                     </button>
                                 </div>

@@ -51,21 +51,21 @@ export async function apiAddToCart(productId: number, quantity = 1) {
 }
 
 
-export async function apiUpdateCart(productId: number, quantity: number) {
+export async function apiUpdateCart(cartId: number, productId: number, quantity: number) {
     return callPhpCartApi({
         operation: 'update',
         method: 'PUT',
-        endpoint: '/api/cart/update',
+        endpoint: `/api/cart/update/${cartId}`,
         item: { productId, quantity }
     });
 }
 
 
-export async function apiRemoveFromCart(productId: number) {
+export async function apiRemoveFromCart(cartId: number, productId: number) {
     return callPhpCartApi({
         operation: 'remove',
         method: 'DELETE',
-        endpoint: '/api/cart/remove',
+        endpoint: `/api/cart/remove/${cartId}`,
         item: { productId, quantity: 0 }
     });
 }

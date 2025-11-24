@@ -14,13 +14,13 @@ export function useCart() {
     };
 
 
-    const updateQuantity = async (productId: number, quantity: number) => {
-        return ctx.dispatchUpdate(productId, quantity);
+    const updateQuantity = async (cartId: number, productId: number, quantity: number) => {
+        return ctx.dispatchUpdate(cartId, productId, quantity);
     };
 
 
-    const removeFromCart = async (productId: number) => {
-        return ctx.dispatchRemove(productId);
+    const removeFromCart = async (cartId: number, productId: number) => {
+        return ctx.dispatchRemove(cartId, productId);
     };
 
 

@@ -48,8 +48,8 @@ const CartContext = createContext<{
     subtotal: number;
     dispatchGet: () => Promise<void>;
     dispatchAdd: (item: CartItem) => Promise<void>;
-    dispatchUpdate: (productId: number, quantity: number) => Promise<void>;
-    dispatchRemove: (productId: number) => Promise<void>;
+    dispatchUpdate: (cartId: number, productId: number, quantity: number) => Promise<void>;
+    dispatchRemove: (cartId: number, productId: number) => Promise<void>;
 // loading state per productId
     loadingMap: Record<number, boolean>;
 } | null>(null);
@@ -98,11 +98,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     }
 
-    async function dispatchUpdate(productId: number, quantity: number) {
+    async function dispatchUpdate(cartId: number, productId: number, quantity: number) {
         dispatch({ type: 'UPDATE', productId, quantity });
         try {
             setLoading(productId, true);
-            await api.apiUpdateCart(productId, quantity);
+            await api.apiUpdateCart(cartId, productId, quantity);
         } catch (e) {
             console.error('Update cart API error', e);
 // no rollback implemented here for brevity
@@ -112,12 +112,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     }
 
-    async function dispatchRemove(productId: number) {
+    async function dispatchRemove(cartId: number, productId: number) {
         const prev = state.items.find((i) => i.productId === productId);
         dispatch({ type: 'REMOVE', productId });
         try {
             setLoading(productId, true);
-            await api.apiRemoveFromCart(productId);
+            await api.apiRemoveFromCart(cartId, productId);
         } catch (e) {
             console.error('Remove from cart API error', e);
 // naive rollback
