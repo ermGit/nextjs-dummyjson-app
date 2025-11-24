@@ -13,7 +13,7 @@ class Cors implements FilterInterface
     {
         $response = service('response');
 
-        $response->setHeader('Access-Control-Allow-Origin', '*'); // or specific domain
+        $response->setHeader('Access-Control-Allow-Origin', env('ALLOWED_ORIGINS')); // or specific domain
         $response->setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
         $response->setHeader('Access-Control-Allow-Credentials', 'true');
