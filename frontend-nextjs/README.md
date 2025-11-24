@@ -3,10 +3,10 @@
 
 ## Setup
 
-
-1. `npm install`
-2. Create `.env.local` and set `NEXT_PUBLIC_PHP_CART_API` to your PHP API URL.
-3. `npm run dev`
+1. cd into `frontend-nextjs`
+2. `npm install`
+3. Create `.env.local` and set `NEXT_PUBLIC_PHP_CART_API` to your PHP API URL.
+4. `npm run dev`
 
 
 Open http://localhost:3000/products

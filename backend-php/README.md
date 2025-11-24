@@ -1,19 +1,18 @@
 # Backend Setup
 
 
-1. Clone Git Repo into `backend-php` folder
-2. cd into `backend-php`
-3. `composer install`
-4. In `backend-php` folder, change `env` file to `.env`
-5. Setup `.env` file
-6. Add the following:
+1. cd into `backend-php`
+2. `composer install`
+3. In `backend-php` folder, change `env` file to `.env`
+4. Setup `.env` file
+5. Add the following:
 ```
 #--------------------------------------------------------------------
 # API URL
 #--------------------------------------------------------------------
 ALLOWED_ORIGINS=http://localhost:3000
 ```
-7. php spark serve --port 3002
+6. php spark serve --port 3002
 
 Open http://localhost:3002
 http://localhost:3002/api/cart
