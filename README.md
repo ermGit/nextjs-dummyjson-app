@@ -1,5 +1,10 @@
 # Next.js DummyJSON E‑commerce Sample
 
+# Project Overview
+This is an e-commerce web application that displays products to the User. 
+The User can add products to a local cart.
+The process also updates a backend cart.  Currently, the backend cart returns static JSON.
+
 
 ## Frontend Setup
 
@@ -41,3 +46,22 @@ http://localhost:3002/api/cart
 http://localhost:3002/api/add
 http://localhost:3002/api/update/{id}
 http://localhost:3002/api/remove/{id}
+
+# Architectural Decisions
+
+I use client side fetching to keep things simple.
+
+I manage the client side cart state with React Context and Reducer.
+I chose Context because all the pages need to know about the Cart.
+
+The web application uses Reducer for state changes because there are 
+several components that need to modify the state of the Cart.
+The components perform different actions on the cart state, so this lends itself 
+to using the reducer architecture instead of using useState.  
+The custom hook useCart defines actions on the Cart.
+
+I separate Product data from the external Api and Cart logic by setting an 
+CartItem type and a Product type.  I add CartItems to the Cart state. 
+Cart Api Requests to the backend are made with CartItem data. 
+In fact, a Cart Api Request is another type that incorporates the 
+CartItem type.
