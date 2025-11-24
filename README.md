@@ -5,15 +5,17 @@ This is an e-commerce web application that displays products to the User.
 The User can add products to a local cart.
 The process also updates a backend cart.  Currently, the backend cart returns static JSON.
 
+## Pre-Setup
+1. Clone Git Repo into `frontend-nextjs`
+
 
 ## Frontend Setup
 
 
-1. Clone Git Repo into `frontend-nextjs`
-2. cd into `frontend-nextjs`
-3. `npm install`
-4. Create `.env.local` and set `NEXT_PUBLIC_PHP_CART_API` to your PHP API URL.
-5. `npm run dev`
+1. cd into `frontend-nextjs`
+2. `npm install`
+3. Create `.env.local` and set `NEXT_PUBLIC_PHP_CART_API` to your PHP API URL.
+4. `npm run dev`
 
 
 Open http://localhost:3000/products
@@ -27,19 +29,18 @@ Open http://localhost:3000/products
 ## Backend Setup
 
 
-1. Clone Git Repo into `backend-php` folder
-2. cd into `backend-php`
-3. `composer install`
-4. In `backend-php` folder, change `env` file to `.env`
-5. Setup `.env` file
-6. Add the following:  
+1. cd into `backend-php`
+2. `composer install`
+3. In `backend-php` folder, change `env` file to `.env`
+4. Setup `.env` file
+5. Add the following:  
 ```
 #--------------------------------------------------------------------
 # API URL
 #--------------------------------------------------------------------
 ALLOWED_ORIGINS=http://localhost:3000
 ```
-7. php spark serve --port 3002
+6. php spark serve --port 3002
 
 Open http://localhost:3002
 http://localhost:3002/api/cart
