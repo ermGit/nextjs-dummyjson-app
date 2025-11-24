@@ -14,7 +14,7 @@ ALLOWED_ORIGINS=http://localhost:3000
 ```
 6. php spark serve --port 3002
 
-Open http://localhost:3002 
+Open http://localhost:3002  
 http://localhost:3002/api/cart  
 http://localhost:3002/api/add  
 http://localhost:3002/api/update/{id}  
